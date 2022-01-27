@@ -1,0 +1,52 @@
+.menu {
+  list-style: none;
+}
+
+.menu-button {
+  color: black;
+  line-height: 50px;
+  width: 200px;
+  height: 50px;
+  background-color: #b9b9b9;
+  margin: 20px auto;
+  border-radius: 10px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  animation: 3s shadow-color-changing infinite alternate;
+}
+
+.menu-games li {
+  position: relative;
+  margin-left: 43.5%;
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #b9b9b9;
+  list-style: none;
+}
+
+.menu-games a {
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  height: 50px;
+  border-radius: 10px;
+  line-height: 50px;
+  transition: all 500ms;
+}
+
+.menu-games a:hover {
+  background-color: #5d7cf3;
+}
+
+.menu-games ul {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  display: none;
+}
+
+.menu-games li:hover ul{
+  display: block;
+}

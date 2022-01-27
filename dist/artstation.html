@@ -1,0 +1,17 @@
+<!doctype html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><link rel="stylesheet" href="index.css"></head><body><title>Art Station</title><div class="images"></div><script>fetch('/final/src/images.json')
+        .then(res => {res.json()
+            .then(data => {
+                for (let i = 0; i < 3; i++){
+                    addImage(data[i].data);
+                }
+            });
+        });
+
+    function addImage(data){
+        const img = document.createElement('img');
+        const images = document.querySelector('.images');
+
+        img.src = data;
+        img.width = 200;
+        images.append(img);
+    }</script></body></html>

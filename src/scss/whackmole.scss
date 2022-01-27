@@ -1,0 +1,36 @@
+body{
+    color: #b9b9b9;
+}
+
+.play-area{
+    position: absolute;
+    margin-right: auto;
+    margin-left: auto;
+    width: 400px;
+    height: 400px;
+}
+
+.area-element{
+    background-color: white;
+    width: 25%;
+    height: 25%;
+    border-radius: 50%;
+    box-shadow: black;
+}
+
+.mole{
+    background-color: black;
+    width: 25%;
+    height: 25%;
+    border-radius: 50%;
+    box-shadow: black;
+}
+
+.game-control{
+    width: 400px;
+}
+
+.play-btn{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}

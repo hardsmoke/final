@@ -1,0 +1,83 @@
+@@include('parts/header.html')
+
+<title>Whack a mole</title>
+<div class="game-control">
+    <input class="play-btn" onclick="startGame()" type="button" value="Играть">
+    <div class="game-goal">Goal: </div>
+    <div class="game-score">Score: </div>
+</div>
+
+<div class="play-area">
+</div>
+<script>
+    let score;
+    let scoreDoc = document.querySelector('.game-score');
+    let goal;
+    let goalDoc = document.querySelector('.game-goal');
+    let currentMole = null;
+    let loop;
+
+    function initGame(width, height){
+        const playArea = document.querySelector('.play-area');
+
+        for (let i = 0; i < width; i++){
+            for (let j = 0; j < height; j++){
+                const button = document.createElement('button');
+                button.className = 'area-element';
+                button.id = i.toString() + j.toString();
+                playArea.insertAdjacentElement('beforeend', button)
+            }
+        }
+        score = 0;
+        goal = getRandom(5) + 5;
+        goalDoc.innerHTML = 'Goal: ' + goal.toString();
+    }
+
+    function startGame(){
+        loop = setInterval(nextMole, 500);
+    }
+
+    function nextMole(){
+        if (currentMole != null) {
+            hideMole();
+        }
+        else {
+            const xPos = getRandom(4);
+            const yPos = getRandom(4);
+
+            currentMole = document.getElementById(xPos.toString() + yPos.toString());
+            currentMole.className = 'mole';
+            currentMole.addEventListener('click', WhackAMole, {once: true})
+        }
+    }
+
+    function getRandom(max){
+        return Math.floor(Math.random() * max);
+    }
+
+    function WhackAMole(){
+        score++;
+        scoreDoc.innerHTML = 'Score: ' + score.toString();
+        if (score == goal){
+            clearInterval(loop);
+            alert('YOU WIN!');
+            reloadGame();
+        }
+    }
+
+    function hideMole()
+    {
+        currentMole.className = 'area-element';
+        currentMole.removeEventListener('click', WhackAMole);
+        currentMole = null;
+    }
+
+    function reloadGame(){
+        hideMole();
+        initGame();
+    }
+
+    initGame(4, 4);
+</script>
+
+@@include('parts/footer.html')

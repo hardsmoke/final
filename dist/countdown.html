@@ -1,0 +1,40 @@
+<!doctype html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><link rel="stylesheet" href="index.css"></head><body><title>Countdown</title><div class="timer"><div class="minutes">0</div><div class="seconds">0</div><div class="mseconds">0</div></div><input class="start-btn" onclick="start()" type="button" value="START"><script>const minutesDOC = document.querySelector('.minutes');
+    const secondsDOC = document.querySelector('.seconds');
+    const msecondsDOC = document.querySelector('.mseconds');
+
+    const delay = 37;
+    const minutes = 0, seconds = 5, mSeconds = 1000;
+
+    timerUpdate(minutes, seconds, mSeconds);
+
+    function start(){
+        const promise = new Promise((resolve, reject) => {
+            let min = minutes, sec = seconds, ms = mSeconds;
+            const interval = setInterval(() => {
+                ms -= delay;
+                if (ms < delay) {
+                    sec--;
+                    ms += 1000;
+                    if (sec == 0) {
+                        if (min == 0) {
+                            clearInterval(interval);
+                            resolve('success');
+                        }
+                        min--;
+                        sec += 60;
+                    }
+                }
+                timerUpdate(min, sec, ms);
+            }, delay);
+        });
+
+        promise.then(function () {
+            timerUpdate(minutes, seconds, mSeconds);
+        });
+    }
+
+    function timerUpdate(m, s, ms){
+        minutesDOC.textContent = m;
+        secondsDOC.textContent = s;
+        msecondsDOC.textContent = ms%100;
+    }</script></body></html>
